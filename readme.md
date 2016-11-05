@@ -72,8 +72,8 @@ $('#myTimeline').jqtimeline({
 							startYear:2011,
 							tooltipTemplate : '<div class="msg">{{name}} {{nicedate}}</div>',
 						});
+```
 
-```javascript
 And the event could be added something like this:
 ```javascript
   var timeline = $("#myTimeline").data("jqtimeline");
