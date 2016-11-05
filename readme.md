@@ -42,7 +42,7 @@ int : If the events are very close to each other on the timeline its hard for a 
 *default: 6*
 
 - **events**
-Arrar[] : Array of events to be shown on the timeline. Dont confuse this with javascript/jquery event object. The format of event object is given in next section.
+Array[] : Array of events to be shown on the timeline. Dont confuse this with javascript/jquery event object. The format of event object is given in next section.
 *default: null*
 
 - **click**
@@ -58,7 +58,32 @@ $('#myTimeline').jqtimeline({
 								alert(event.name);
 							}
 						});
+
 ```
+
+- **tooltipTemplate**
+string : Template7 template of tooltip to show. This should be incorporated with custom JSON so that you can modify the tooltip output as you wish.
+*default: null*
+
+Example :
+```javascript
+$('#myTimeline').jqtimeline({
+							numYears:4,
+							startYear:2011,
+                                                        tooltipTemplate : '<div class="msg">{{name}} {{nicedate}}</div>',
+						});
+
+```javascript
+And the event could be added something like this:
+```javascript
+  var timeline = $("#myTimeline").data("jqtimeline");
+  var evt = {'id' : 1,'name' : 'Example','timestamp' : '2016-05-04'};
+  evt.on =  moment(evt.timestamp).toDate();
+  evt.nicedate = moment(evt.timestamp).format("DD.MM.YYYY");
+  timeline.addEvent(evt);
+```
+
+
 
 Timeline Event object
 ---------------------

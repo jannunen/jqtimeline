@@ -185,7 +185,8 @@
 					for (var i = 0; i < neighborEvents.length; i++) {
 						var $temp = $(neighborEvents[i]);
 						var oData = $temp.data('event');
-						strToolTip = strToolTip + '<div class="msg" id="msg_'+oData.id+'">'+oData.on.toDateString()+' : '+ oData.name +'</div>';
+                                                var tooltiphtml = generateTooltip(oData,_this.options.tooltipTemplate);
+						strToolTip = strToolTip + tooltiphtml; 
 					};
 					_this._showToolTip(nLeft,strToolTip,eObj.id,false);
 				}
@@ -233,6 +234,23 @@
 		}	
 	}
 
+  var generateTooltip = function(oData,tpl) {
+    var html = "";
+    if (tpl!=undefined) {
+      // Use template7 for generating the html
+      if (Template7 == undefined) {
+        throw new Error("Template7 library is missing");
+      }
+      var compiled = Template7.compile(tpl);
+      html = compiled(oData);
+      var jhtml = $(html);
+      jhtml.attr("id","msg_"+oData.id);
+      html = jhtml.html();
+    } else {
+      html = '<div class="msg" id="msg_'+oData.id+'">'+oData.on.toDateString()+' : '+ oData.name +'</div>';
+    }
+    return html;
+  }
 
 	var isArray = function(a){
 		return Object.prototype.toString.apply(a) === '[object Array]';
