@@ -70,7 +70,7 @@ Example :
 $('#myTimeline').jqtimeline({
 							numYears:4,
 							startYear:2011,
-                                                        tooltipTemplate : '<div class="msg">{{name}} {{nicedate}}</div>',
+							tooltipTemplate : '<div class="msg">{{name}} {{nicedate}}</div>',
 						});
 
 ```javascript
